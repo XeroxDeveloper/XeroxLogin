@@ -9,7 +9,7 @@
 
 // 1. Вставь сюда свой Client ID из Google Cloud Console.
 // Если оставить поле пустым или как есть, включится РЕЖИМ СИМУЛЯЦИИ.
-const GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com"; 
+const GOOGLE_CLIENT_ID = "564519193098-slec417q3828aamilhq0hkdftjd9h8b1.apps.googleusercontent.com"; 
 
 // =================================================================
 // 🚀 ЛОГИКА
