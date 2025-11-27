@@ -1,0 +1,287 @@
+:root {
+    /* --- Material You 3 Color Tokens (Purple Theme) --- */
+    --md-sys-color-primary: #6750A4;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #EADDFF;
+    --md-sys-color-on-primary-container: #21005D;
+    
+    --md-sys-color-secondary: #625B71;
+    --md-sys-color-secondary-container: #E8DEF8;
+    --md-sys-color-on-secondary-container: #1D192B;
+    
+    --md-sys-color-surface: #FEF7FF;
+    --md-sys-color-surface-container-high: #ECE6F0; /* Цвет карточки */
+    --md-sys-color-on-surface: #1D1B20;
+    --md-sys-color-on-surface-variant: #49454F;
+    --md-sys-color-outline: #79747E;
+    
+    /* --- Shapes & Spacing --- */
+    --md-sys-shape-corner-extra-large: 28px;
+    --md-sys-shape-corner-large: 16px;
+    --md-sys-shape-corner-full: 100px;
+    
+    --md-sys-elevation-level2: 0px 4px 8px 3px rgba(0,0,0,0.15), 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none; /* Чтобы текст не выделялся при кликах */
+}
+
+/* --- Контейнер --- */
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* --- Карточка входа --- */
+.login-card {
+    background-color: var(--md-sys-color-surface-container-high);
+    border-radius: var(--md-sys-shape-corner-extra-large);
+    padding: 32px 24px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: var(--md-sys-elevation-level2);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* --- Хедер --- */
+.card-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-brand {
+    color: var(--md-sys-color-primary);
+    background: var(--md-sys-color-primary-container);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.headline {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--md-sys-color-on-surface);
+}
+
+.subhead {
+    margin: 0;
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    letter-spacing: 0.25px;
+}
+
+/* --- Список выбора --- */
+.selection-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.selection-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: var(--md-sys-shape-corner-large);
+    overflow: hidden;
+    /* Убираем стандартный вид input */
+}
+
+/* Прячем настоящий радиобаттон */
+.selection-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Контент элемента списка */
+.item-content {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--md-sys-shape-corner-large);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+/* Иконка слева */
+.item-icon {
+    margin-right: 16px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.item-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+.item-desc {
+    font-size: 12px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Кастомный индикатор радио (кружок) */
+.radio-indicator {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--md-sys-color-outline);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.radio-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    background-color: var(--md-sys-color-primary);
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+/* --- Состояния (Hover, Checked) --- */
+
+/* Наведение */
+.selection-item:hover .item-content {
+    background-color: rgba(103, 80, 164, 0.05); /* Легкий тинт primary */
+}
+
+/* Выбранный элемент */
+.selection-item input:checked + .item-content {
+    background-color: var(--md-sys-color-primary-container);
+    border-color: var(--md-sys-color-primary-container);
+}
+
+/* Изменение цвета текста и иконки при выборе */
+.selection-item input:checked + .item-content .item-title,
+.selection-item input:checked + .item-content .item-icon {
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.selection-item input:checked + .item-content .item-desc {
+    color: var(--md-sys-color-on-primary-container);
+    opacity: 0.8;
+}
+
+/* Анимация радио-кружка */
+.selection-item input:checked + .item-content .radio-indicator {
+    border-color: var(--md-sys-color-primary);
+}
+.selection-item input:checked + .item-content .radio-indicator::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- Кнопки и Футер --- */
+.actions {
+    margin-top: 8px;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+    border: none;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s, box-shadow 0.2s, opacity 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:not(:disabled):hover {
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.15);
+    background-color: #5c4794; /* Чуть темнее */
+}
+
+.btn-primary:disabled {
+    background-color: rgba(29, 27, 32, 0.12);
+    color: rgba(29, 27, 32, 0.38);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Ripple effect (простой CSS вариант при клике) */
+.btn-primary:active::after {
+    content: "";
+    position: absolute;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 24px;
+}
+
+/* --- Бейдж "Все приложения" --- */
+.universal-badge {
+    text-align: center;
+    font-size: 11px;
+    color: var(--md-sys-color-on-surface-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    opacity: 0.7;
+    margin-top: -10px;
+}
+
+.universal-badge .material-symbols-outlined {
+    font-size: 14px;
+}
+
+/* --- Футер --- */
+.footer {
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--md-sys-color-outline);
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    padding: 6px 16px;
+    border-radius: 12px;
+  }
